@@ -2209,6 +2209,11 @@ func toAPIError(ctx context.Context, err error) APIError {
 		}
 	}
 
+	if apiErr.Code == "XMinioBackendDown" {
+		apiErr.Description = "Backend gateway is down. Please contact your administrator."
+		return apiErr
+	}
+
 	if apiErr.Code == "InternalError" {
 		// If we see an internal error try to interpret
 		// any underlying errors if possible depending on
