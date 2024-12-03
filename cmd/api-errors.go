@@ -2209,11 +2209,6 @@ func toAPIError(ctx context.Context, err error) APIError {
 		}
 	}
 
-	if apiErr.Code == "XMinioBackendDown" {
-		apiErr.Description = fmt.Sprintf("%s (%v)", apiErr.Description, err)
-		return apiErr
-	}
-
 	if apiErr.Code == "InternalError" {
 		// If we see an internal error try to interpret
 		// any underlying errors if possible depending on
